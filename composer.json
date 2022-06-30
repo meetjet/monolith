@@ -1,9 +1,12 @@
 {
-    "name": "laravel/laravel",
+    "name": "meetjet/monolith",
     "type": "project",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
-    "license": "MIT",
+    "description": "The Laravel Boilerplate Project.",
+    "keywords": [
+        "framework",
+        "laravel",
+        "boilerplate"
+    ],
     "require": {
         "php": "^8.0.2",
         "genl/matice": "^1.1",
@@ -16,6 +19,7 @@
         "tightenco/ziggy": "^1.0"
     },
     "require-dev": {
+        "roave/security-advisories": "dev-latest",
         "fakerphp/faker": "^1.9.1",
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.4",
