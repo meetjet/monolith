@@ -196,5 +196,13 @@
     "You may delete any of your existing tokens if they are no longer needed.": "Вы можете удалить любой из имеющихся у Вас токенов, если они больше не нужны.",
     "You may not delete your personal team.": "Вы не можете удалить свою команду.",
     "You may not leave a team that you created.": "Вы не можете покидать созданную Вами команду.",
-    "Your email address is unverified.": "Ваш адрес электронной почты не подтверждён."
+    "Your email address is unverified.": "Ваш адрес электронной почты не подтверждён.",
+    "Platform users": "Пользователи платформы",
+    "Create user": "Создать пользователя",
+    "Created": "Создан",
+    "Change password": "Изменить пароль",
+    "Are you sure you want to delete this entity": "Вы уверены, что хотите удалить этот объект",
+    "Nothing found": "Ничего не найдено",
+    "Prev": "Пред",
+    "Next": "След"
 }
