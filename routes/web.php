@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PlatformUserController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -32,4 +33,19 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
+
+    // Platform users
+    Route::group([
+        'prefix' => 'users',
+        'as' => 'users.',
+    ], function () {
+        Route::get('/', [PlatformUserController::class, 'index'])->name('index');
+        Route::get('/create', [PlatformUserController::class, 'create'])->name('create');
+        Route::post('/', [PlatformUserController::class, 'store'])->name('store');
+        Route::get('/{user}/edit', [PlatformUserController::class, 'edit'])->name('edit');
+        Route::put('/{user}', [PlatformUserController::class, 'update'])->name('update');
+        Route::put('/{user}/change-password', [PlatformUserController::class, 'changePassword'])
+            ->name('change-password');
+        Route::delete('/{user}', [PlatformUserController::class, 'destroy'])->name('destroy');
+    });
 });
