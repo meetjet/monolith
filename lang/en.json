@@ -196,5 +196,13 @@
     "You may delete any of your existing tokens if they are no longer needed.": "You may delete any of your existing tokens if they are no longer needed.",
     "You may not delete your personal team.": "You may not delete your personal team.",
     "You may not leave a team that you created.": "You may not leave a team that you created.",
-    "Your email address is unverified.": "Your email address is unverified."
+    "Your email address is unverified.": "Your email address is unverified.",
+    "Platform users": "Platform users",
+    "Create user": "Create user",
+    "Created": "Created",
+    "Change password": "Change password",
+    "Are you sure you want to delete this entity": "Are you sure you want to delete this entity",
+    "Nothing found": "Nothing found",
+    "Prev": "Prev",
+    "Next": "Next"
 }
