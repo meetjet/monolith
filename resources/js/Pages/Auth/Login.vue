@@ -32,7 +32,7 @@ const submit = () => {
 </script>
 
 <template>
-  <Head title="Log in" />
+  <Head :title="$t('Log in')" />
 
   <JetAuthenticationCard>
     <template #logo>
@@ -59,7 +59,7 @@ const submit = () => {
       </div>
 
       <div class="mt-4">
-        <JetLabel for="password" value="Password" />
+        <JetLabel for="password" :value="$t('Password')" />
         <JetInput
           id="password"
           v-model="form.password"
@@ -73,7 +73,9 @@ const submit = () => {
       <div class="block mt-4">
         <label class="flex items-center">
           <JetCheckbox v-model:checked="form.remember" name="remember" />
-          <span class="ml-2 text-sm text-gray-600">Remember me</span>
+          <span class="ml-2 text-sm text-gray-600">{{
+            $t("Remember me")
+          }}</span>
         </label>
       </div>
 
@@ -82,17 +84,15 @@ const submit = () => {
           v-if="canResetPassword"
           :href="route('password.request')"
           class="underline text-sm text-gray-600 hover:text-gray-900"
-        >
-          Forgot your password?
+          >{{ $t("Forgot your password?") }}
         </Link>
 
         <JetButton
           class="ml-4"
           :class="{ 'opacity-25': form.processing }"
           :disabled="form.processing"
+          >{{ $t("Log in") }}</JetButton
         >
-          Log in
-        </JetButton>
       </div>
     </form>
   </JetAuthenticationCard>

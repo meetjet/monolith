@@ -106,18 +106,24 @@ const displayableRole = (role) => {
 
       <!-- Add Team Member -->
       <JetFormSection @submitted="addTeamMember">
-        <template #title> Add Team Member </template>
+        <template #title>{{ $t("Add Team Member") }}</template>
 
         <template #description>
-          Add a new team member to your team, allowing them to collaborate with
-          you.
+          {{
+            $t(
+              "Add a new team member to your team, allowing them to collaborate with you."
+            )
+          }}
         </template>
 
         <template #form>
           <div class="col-span-6">
-            <div class="max-w-xl text-sm text-gray-600">
-              Please provide the email address of the person you would like to
-              add to this team.
+            <div class="text-sm text-gray-600">
+              {{
+                $t(
+                  "Please provide the email address of the person you would like to add to this team."
+                )
+              }}
             </div>
           </div>
 
@@ -141,7 +147,7 @@ const displayableRole = (role) => {
             v-if="availableRoles.length > 0"
             class="col-span-6 lg:col-span-4"
           >
-            <JetLabel for="roles" value="Role" />
+            <JetLabel for="roles" :value="$t('Role')" />
             <JetInputError
               :message="addTeamMemberForm.errors.role"
               class="mt-2"
@@ -208,14 +214,14 @@ const displayableRole = (role) => {
             :on="addTeamMemberForm.recentlySuccessful"
             class="mr-3"
           >
-            Added.
+            {{ $t("Added.") }}
           </JetActionMessage>
 
           <JetButton
             :class="{ 'opacity-25': addTeamMemberForm.processing }"
             :disabled="addTeamMemberForm.processing"
           >
-            Add
+            {{ $t("Add") }}
           </JetButton>
         </template>
       </JetFormSection>
@@ -230,12 +236,14 @@ const displayableRole = (role) => {
 
       <!-- Team Member Invitations -->
       <JetActionSection class="mt-10 sm:mt-0">
-        <template #title> Pending Team Invitations </template>
+        <template #title>{{ $t("Pending Team Invitations") }}</template>
 
         <template #description>
-          These people have been invited to your team and have been sent an
-          invitation email. They may join the team by accepting the email
-          invitation.
+          {{
+            $t(
+              "These people have been invited to your team and have been sent an invitation email. They may join the team by accepting the email invitation."
+            )
+          }}
         </template>
 
         <!-- Pending Team Member Invitation List -->
@@ -257,7 +265,7 @@ const displayableRole = (role) => {
                   class="cursor-pointer ml-6 text-sm text-red-500 focus:outline-none"
                   @click="cancelTeamInvitation(invitation)"
                 >
-                  Cancel
+                  {{ $t("Cancel") }}
                 </button>
               </div>
             </div>
@@ -271,10 +279,10 @@ const displayableRole = (role) => {
 
       <!-- Manage Team Members -->
       <JetActionSection class="mt-10 sm:mt-0">
-        <template #title> Team Members </template>
+        <template #title>{{ $t("Team Members") }}</template>
 
         <template #description>
-          All of the people that are part of this team.
+          {{ $t("All of the people that are part of this team.") }}
         </template>
 
         <!-- Team Member List -->
@@ -321,7 +329,7 @@ const displayableRole = (role) => {
                   class="cursor-pointer ml-6 text-sm text-red-500"
                   @click="confirmLeavingTeam"
                 >
-                  Leave
+                  {{ $t("Leave") }}
                 </button>
 
                 <!-- Remove Team Member -->
@@ -330,7 +338,7 @@ const displayableRole = (role) => {
                   class="cursor-pointer ml-6 text-sm text-red-500"
                   @click="confirmTeamMemberRemoval(user)"
                 >
-                  Remove
+                  {{ $t("Remove") }}
                 </button>
               </div>
             </div>
@@ -344,7 +352,7 @@ const displayableRole = (role) => {
       :show="currentlyManagingRole"
       @close="currentlyManagingRole = false"
     >
-      <template #title> Manage Role </template>
+      <template #title>{{ $t("Manage Role") }}</template>
 
       <template #content>
         <div v-if="managingRoleFor">
@@ -405,7 +413,7 @@ const displayableRole = (role) => {
 
       <template #footer>
         <JetSecondaryButton @click="currentlyManagingRole = false">
-          Cancel
+          {{ $t("Cancel") }}
         </JetSecondaryButton>
 
         <JetButton
@@ -414,7 +422,7 @@ const displayableRole = (role) => {
           :disabled="updateRoleForm.processing"
           @click="updateRole"
         >
-          Save
+          {{ $t("Save") }}
         </JetButton>
       </template>
     </JetDialogModal>
@@ -424,15 +432,15 @@ const displayableRole = (role) => {
       :show="confirmingLeavingTeam"
       @close="confirmingLeavingTeam = false"
     >
-      <template #title> Leave Team </template>
+      <template #title>{{ $t("Leave Team") }}</template>
 
       <template #content>
-        Are you sure you would like to leave this team?
+        {{ $t("Are you sure you would like to leave this team?") }}
       </template>
 
       <template #footer>
         <JetSecondaryButton @click="confirmingLeavingTeam = false">
-          Cancel
+          {{ $t("Cancel") }}
         </JetSecondaryButton>
 
         <JetDangerButton
@@ -441,7 +449,7 @@ const displayableRole = (role) => {
           :disabled="leaveTeamForm.processing"
           @click="leaveTeam"
         >
-          Leave
+          {{ $t("Leave") }}
         </JetDangerButton>
       </template>
     </JetConfirmationModal>
@@ -451,15 +459,17 @@ const displayableRole = (role) => {
       :show="teamMemberBeingRemoved"
       @close="teamMemberBeingRemoved = null"
     >
-      <template #title> Remove Team Member </template>
+      <template #title>{{ $t("Remove Team Member") }}</template>
 
       <template #content>
-        Are you sure you would like to remove this person from the team?
+        {{
+          $t("Are you sure you would like to remove this person from the team?")
+        }}
       </template>
 
       <template #footer>
         <JetSecondaryButton @click="teamMemberBeingRemoved = null">
-          Cancel
+          {{ $t("Cancel") }}
         </JetSecondaryButton>
 
         <JetDangerButton
@@ -468,7 +478,7 @@ const displayableRole = (role) => {
           :disabled="removeTeamMemberForm.processing"
           @click="removeTeamMember"
         >
-          Remove
+          {{ $t("Remove") }}
         </JetDangerButton>
       </template>
     </JetConfirmationModal>
