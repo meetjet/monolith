@@ -10,7 +10,7 @@ defineProps({
 </script>
 
 <template>
-  <Head title="Welcome" />
+  <Head :title="$t('Welcome')" />
 
   <div
     class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0"
@@ -21,7 +21,7 @@ defineProps({
         :href="route('dashboard')"
         class="text-sm text-gray-700 underline"
       >
-        Dashboard
+        {{ $t("Dashboard") }}
       </Link>
 
       <template v-else>
