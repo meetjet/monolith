@@ -8,17 +8,18 @@
 
     <div class="py-12">
       <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg px-6 py-8">
-          <div class="mb-8">
-            <!-- Create link -->
-            <Link
-              class="px-6 py-3 rounded bg-indigo-600 text-white text-sm leading-4 font-bold whitespace-nowrap hover:bg-orange-400 focus:bg-orange-400"
-              :href="route('users.create')"
-            >
-              {{ $t("Create user") }}
-            </Link>
-          </div>
-
+        <page-section>
+          <template #top>
+            <div class="mb-8 mt-2">
+              <!-- Create link -->
+              <Link
+                class="rounded-md shadow-sm bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-3 px-6 focus:outline-none focus:shadow-outline"
+                :href="route('users.create')"
+              >
+                {{ $t("Create user") }}
+              </Link>
+            </div>
+          </template>
           <!-- User list -->
           <Table
             :filters="queryBuilderProps.filters"
@@ -64,7 +65,7 @@
               </tr>
             </template>
           </Table>
-        </div>
+        </page-section>
       </div>
     </div>
   </app-layout>
@@ -72,6 +73,7 @@
 
 <script>
 import AppLayout from "@/Layouts/AppLayout.vue";
+import PageSection from "@/Shared/PageSection.vue";
 import { Link } from "@inertiajs/inertia-vue3";
 import {
   InteractsWithQueryBuilder,
@@ -83,6 +85,7 @@ export default {
   mixins: [InteractsWithQueryBuilder],
   components: {
     AppLayout,
+    PageSection,
     Link,
     Table: Tailwind2.Table,
     HeaderCell: Tailwind2.HeaderCell,
