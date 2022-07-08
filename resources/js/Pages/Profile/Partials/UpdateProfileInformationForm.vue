@@ -87,6 +87,13 @@ const clearPhotoFileInput = () => {
     </template>
 
     <template #form>
+      <!-- Profile Role -->
+      <div class="col-span-6 sm:col-span-4">
+        <div class="font-medium text-sm">{{ $t("Role") }}</div>
+        <div class="font-bold text-lg text-green-500">
+          {{ user.role_description }}
+        </div>
+      </div>
       <!-- Profile Photo -->
       <div
         v-if="$page.props.jetstream.managesProfilePhotos"
