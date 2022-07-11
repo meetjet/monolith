@@ -1,8 +1,8 @@
 <template>
-  <app-layout :title="$t('Platform users')">
+  <app-layout :title="$t('Users')">
     <template #header>
       <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-        {{ $t("Platform users") }}
+        {{ $t("Users") }}
       </h2>
     </template>
 

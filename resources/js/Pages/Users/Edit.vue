@@ -1,11 +1,11 @@
 <template>
-  <AppLayout :title="$t('Platform users')">
+  <AppLayout :title="$t('Users')">
     <template #header>
       <h2 class="font-semibold text-xl text-gray-800 leading-tight">
         <Link
           :href="route('users.index')"
           class="text-indigo-400 hover:text-indigo-600"
-          >{{ $t("Platform users") }}
+          >{{ $t("Users") }}
         </Link>
         /
         {{ editForm.name }}

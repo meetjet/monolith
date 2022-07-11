@@ -30,7 +30,7 @@
                   :href="route('users.index')"
                   :active="route().current('users.*')"
                 >
-                  {{ $t("Platform users") }}
+                  {{ $t("Users") }}
                 </JetNavLink>
               </div>
             </div>
@@ -39,7 +39,10 @@
               <div class="ml-3 relative">
                 <!-- Teams Dropdown -->
                 <JetDropdown
-                  v-if="$page.props.jetstream.hasTeamFeatures && $page.props.user.current_team"
+                  v-if="
+                    $page.props.jetstream.hasTeamFeatures &&
+                    $page.props.user.current_team
+                  "
                   align="right"
                   width="60"
                 >
@@ -70,7 +73,12 @@
                   <template #content>
                     <div class="w-60">
                       <!-- Team Management -->
-                      <template v-if="$page.props.jetstream.hasTeamFeatures && $page.props.user.current_team">
+                      <template
+                        v-if="
+                          $page.props.jetstream.hasTeamFeatures &&
+                          $page.props.user.current_team
+                        "
+                      >
                         <div class="block px-4 py-2 text-xs text-gray-400">
                           {{ $t("Manage Team") }}
                         </div>
@@ -257,7 +265,7 @@
               :href="route('users.index')"
               :active="route().current('users.*')"
             >
-              {{ $t("Platform users") }}
+              {{ $t("Users") }}
             </JetResponsiveNavLink>
           </div>
 
@@ -309,7 +317,12 @@
               </form>
 
               <!-- Team Management -->
-              <template v-if="$page.props.jetstream.hasTeamFeatures && $page.props.user.current_team">
+              <template
+                v-if="
+                  $page.props.jetstream.hasTeamFeatures &&
+                  $page.props.user.current_team
+                "
+              >
                 <div class="border-t border-gray-200" />
 
                 <div class="block px-4 py-2 text-xs text-gray-400">
