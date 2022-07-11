@@ -8,6 +8,7 @@ import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
 import { ZiggyVue } from "../../vendor/tightenco/ziggy/dist/vue.m";
 import { __, setLocale } from "matice";
 import { hasRole, hasPermission } from "./plugins/role_permission_plugin";
+import { icons } from "./plugins/oh-vue-icons";
 
 const appName =
   window.document.getElementsByTagName("title")[0]?.innerText || "Laravel";
@@ -27,6 +28,7 @@ createInertiaApp({
       .mixin({ methods: { $setLocale: setLocale } })
       .mixin({ methods: { $hasRole: hasRole } })
       .mixin({ methods: { $hasPermission: hasPermission } })
+      .component("v-icon", icons)
       .mount(el);
   },
 });
