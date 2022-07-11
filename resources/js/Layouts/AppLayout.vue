@@ -72,7 +72,7 @@ const logout = () => {
               <div class="ml-3 relative">
                 <!-- Teams Dropdown -->
                 <JetDropdown
-                  v-if="$page.props.jetstream.hasTeamFeatures"
+                  v-if="$page.props.jetstream.hasTeamFeatures && $page.props.user.current_team"
                   align="right"
                   width="60"
                 >
@@ -103,7 +103,7 @@ const logout = () => {
                   <template #content>
                     <div class="w-60">
                       <!-- Team Management -->
-                      <template v-if="$page.props.jetstream.hasTeamFeatures">
+                      <template v-if="$page.props.jetstream.hasTeamFeatures && $page.props.user.current_team">
                         <div class="block px-4 py-2 text-xs text-gray-400">
                           {{ $t("Manage Team") }}
                         </div>
@@ -342,7 +342,7 @@ const logout = () => {
               </form>
 
               <!-- Team Management -->
-              <template v-if="$page.props.jetstream.hasTeamFeatures">
+              <template v-if="$page.props.jetstream.hasTeamFeatures && $page.props.user.current_team">
                 <div class="border-t border-gray-200" />
 
                 <div class="block px-4 py-2 text-xs text-gray-400">
