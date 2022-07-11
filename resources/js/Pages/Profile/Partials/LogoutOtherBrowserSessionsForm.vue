@@ -107,9 +107,7 @@ const closeModal = () => {
 
           <div class="ml-3">
             <div class="text-sm text-gray-600">
-              {{
-                session.agent.platform ? session.agent.platform : "Unknown"
-              }}
+              {{ session.agent.platform ? session.agent.platform : "Unknown" }}
               - {{ session.agent.browser ? session.agent.browser : "Unknown" }}
             </div>
 
@@ -120,7 +118,7 @@ const closeModal = () => {
                 <span
                   v-if="session.is_current_device"
                   class="text-green-500 font-semibold"
-                  >This device</span
+                  >{{ $t("This device") }}</span
                 >
                 <span v-else>Last active {{ session.last_active }}</span>
               </div>
@@ -135,7 +133,7 @@ const closeModal = () => {
         </JetButton>
 
         <JetActionMessage :on="form.recentlySuccessful" class="ml-3">
-          {{ $t("Done.") }}
+          {{ $t("Done") }}
         </JetActionMessage>
       </div>
 
