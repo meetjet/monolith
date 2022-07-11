@@ -35,17 +35,6 @@ Route::middleware([
     })->name('dashboard');
 
     // Users
-    Route::group([
-        'prefix' => 'users',
-        'as' => 'users.',
-    ], function () {
-        Route::get('/', [UserController::class, 'index'])->name('index');
-        Route::get('/create', [UserController::class, 'create'])->name('create');
-        Route::post('/', [UserController::class, 'store'])->name('store');
-        Route::get('/{user}/edit', [UserController::class, 'edit'])->name('edit');
-        Route::put('/{user}', [UserController::class, 'update'])->name('update');
-        Route::put('/{user}/change-password', [UserController::class, 'changePassword'])
-            ->name('change-password');
-        Route::delete('/{user}', [UserController::class, 'destroy'])->name('destroy');
-    });
+    Route::put('users/{user}/change-password', [UserController::class, 'changePassword'])->name('users.change-password');
+    Route::resource('users', UserController::class);
 });
