@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Filters\PlatformUserSearchFilter;
+use App\Filters\UserSearchFilter;
 use App\Models\Team;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
@@ -21,7 +21,7 @@ use ProtoneMedia\LaravelQueryBuilderInertiaJs\InertiaTable;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 
-class PlatformUserController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -39,13 +39,13 @@ class PlatformUserController extends Controller
                 'created_at',
             ])
             ->allowedFilters([
-                AllowedFilter::custom('global', new PlatformUserSearchFilter(), null, ""),
+                AllowedFilter::custom('global', new UserSearchFilter(), null, ""),
             ])
             ->paginate(10)
             ->withQueryString()
             ->toArray();
 
-        return Inertia::render("PlatformUsers/Index", [
+        return Inertia::render("Users/Index", [
             'entities' => $entities,
         ])->table(function (InertiaTable $table) {
         });
@@ -58,7 +58,7 @@ class PlatformUserController extends Controller
      */
     public function create(): Response
     {
-        return Inertia::render("PlatformUsers/Create");
+        return Inertia::render("Users/Create");
     }
 
     /**
@@ -108,7 +108,7 @@ class PlatformUserController extends Controller
      */
     public function edit(Request $request, User $user): Response
     {
-        return Inertia::render("PlatformUsers/Edit", [
+        return Inertia::render("Users/Edit", [
             'entity' => $user->toArray(),
         ]);
     }
