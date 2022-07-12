@@ -1,5 +1,5 @@
 <template>
-  <AppLayout :title="$t('Platform users')">
+  <app-layout :title="$t('Users')">
     <template #content>
       <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <!-- Edit form -->
@@ -45,7 +45,7 @@
         </PageSection>
       </div>
     </template>
-  </AppLayout>
+  </app-layout>
 </template>
 
 <script>
