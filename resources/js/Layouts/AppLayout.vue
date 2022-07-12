@@ -22,7 +22,11 @@
           <div class="sm:flex sm:justify-between sm:items-center mb-8">
             <!-- Top Left Area -->
             <div>
-              <h1 class="text-2xl md:text-3xl text-slate-800 font-bold">
+              <breadcrumbs
+                v-if="$page.props.breadcrumbs.length"
+                :show_breadcrumbs="show_breadcrumbs"
+              />
+              <h1 v-else class="text-2xl md:text-3xl text-slate-800 font-bold">
                 {{ title }}
               </h1>
             </div>
@@ -51,9 +55,14 @@ import JetDropdown from "@/Jetstream/Dropdown.vue";
 import JetDropdownLink from "@/Jetstream/DropdownLink.vue";
 import JetNavLink from "@/Jetstream/NavLink.vue";
 import JetResponsiveNavLink from "@/Jetstream/ResponsiveNavLink.vue";
+import Breadcrumbs from "@/Shared/Breadcrumbs.vue";
 
 defineProps({
   title: String,
+  show_breadcrumbs: {
+    type: Boolean,
+    default: true,
+  },
 });
 
 const showingNavigationDropdown = ref(false);
