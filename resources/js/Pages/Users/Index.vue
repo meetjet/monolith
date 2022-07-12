@@ -1,5 +1,5 @@
 <template>
-  <app-layout :title="$t('Platform users')">
+  <app-layout :title="$t('Users')">
     <template #content>
       <Table :resource="entities">
         <template #cell(actions)="{ item: user }">

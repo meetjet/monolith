@@ -5,7 +5,7 @@
         <Link
           :href="route('users.index')"
           class="text-indigo-400 hover:text-indigo-600"
-          >{{ $t("Platform users") }}
+          >{{ $t("Users") }}
         </Link>
         /
         {{ $t("Create") }}
