@@ -1,18 +1,6 @@
 <template>
   <AppLayout :title="$t('Platform users')">
-    <template #header>
-      <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-        <Link
-          :href="route('users.index')"
-          class="text-indigo-400 hover:text-indigo-600"
-          >{{ $t("Platform users") }}
-        </Link>
-        /
-        {{ editForm.name }}
-      </h2>
-    </template>
-
-    <div class="py-12">
+    <template #content>
       <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <!-- Edit form -->
         <page-section>
@@ -56,7 +44,7 @@
           }}</Link>
         </PageSection>
       </div>
-    </div>
+    </template>
   </AppLayout>
 </template>
 

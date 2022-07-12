@@ -1,7 +1,14 @@
 <template>
   <app-layout :title="$t('Platform users')">
     <template #content>
-      <Table :resource="entities" />
+      <Table :resource="entities">
+        <template #cell(actions)="{ item: user }">
+          <v-icon name="ri-pencil-line" class="mr-2" /><Link
+            :href="`/users/${user.id}/edit`"
+            >{{ $t("Edit") }}</Link
+          >
+        </template>
+      </Table>
     </template>
   </app-layout>
 </template>

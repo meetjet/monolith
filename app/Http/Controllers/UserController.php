@@ -7,6 +7,7 @@ use App\Models\Team;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
@@ -30,6 +31,16 @@ class UserController extends Controller
      */
     public function index(): Response
     {
+        $globalSearch = AllowedFilter::callback('global', function ($query, $value) {
+            $query->where(function ($query) use ($value) {
+                Collection::wrap($value)->each(function ($value) use ($query) {
+                    $query
+                        ->orWhere('name', 'LIKE', "%{$value}%")
+                        ->orWhere('email', 'LIKE', "%{$value}%");
+                });
+            });
+        });
+
         $entities = QueryBuilder::for(User::class)
             ->defaultSort('-id')
             ->allowedSorts([
@@ -38,16 +49,19 @@ class UserController extends Controller
                 'email',
                 'created_at',
             ])
-            ->allowedFilters([
-                AllowedFilter::custom('global', new UserSearchFilter(), null, ""),
-            ])
-            ->paginate(10)
-            ->withQueryString()
-            ->toArray();
+            ->allowedFilters(['name', 'email', $globalSearch])
+            ->paginate()
+            ->withQueryString();
 
         return Inertia::render("Users/Index", [
             'entities' => $entities,
         ])->table(function (InertiaTable $table) {
+            $table
+                ->withGlobalSearch('Поиск...')
+                ->column(key: 'id', label: 'ID', sortable: true, searchable: true)
+                ->column(key: 'name', label: 'Имя', sortable: true, searchable: true)
+                ->column(key: 'email', sortable: true, searchable: true)
+                ->column('actions', 'Действия');
         });
     }
 

@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use App\Models\User;
+use Glhd\Gretel\Routing\ResourceBreadcrumbs;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -36,5 +38,11 @@ Route::middleware([
 
     // Users
     Route::put('users/{user}/change-password', [UserController::class, 'changePassword'])->name('users.change-password');
-    Route::resource('users', UserController::class);
+    Route::resource('users', UserController::class)->breadcrumbs(function(ResourceBreadcrumbs $breadcrumbs) {
+        $breadcrumbs
+            ->index('Users')
+            ->create('New User')
+            ->show(fn(User $user) => $user->name)
+            ->edit('Edit');
+    });
 });
