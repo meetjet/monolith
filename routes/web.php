@@ -40,9 +40,8 @@ Route::middleware([
     Route::put('users/{user}/change-password', [UserController::class, 'changePassword'])->name('users.change-password');
     Route::resource('users', UserController::class)->breadcrumbs(function(ResourceBreadcrumbs $breadcrumbs) {
         $breadcrumbs
-            ->index('Users')
-            ->create('New User')
-            ->show(fn(User $user) => $user->name)
-            ->edit('Edit');
+            ->index(__('Users'))
+            ->create(__('Create user'))
+            ->edit(fn(User $user) => $user->name, "users.index");
     });
 });
