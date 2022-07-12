@@ -9,6 +9,17 @@ import { ZiggyVue } from "../../vendor/tightenco/ziggy/dist/vue.m";
 import { __, setLocale } from "matice";
 import { hasRole, hasPermission } from "./plugins/role_permission_plugin";
 import { icons } from "./plugins/oh-vue-icons";
+import { setTranslations } from "@protonemedia/inertiajs-tables-laravel-query-builder";
+
+setTranslations({
+  next: "След.",
+  no_results_found: "No results found",
+  of: "of",
+  per_page: "на стр.",
+  previous: "Пред.",
+  results: "результатов",
+  to: "to",
+});
 
 const appName =
   window.document.getElementsByTagName("title")[0]?.innerText || "Laravel";

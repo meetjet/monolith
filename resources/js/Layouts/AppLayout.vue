@@ -1,30 +1,40 @@
 <template>
-  <div class="flex h-screen overflow-hidden">
+  <div class="flex h-screen overflow-hidden bg-slate-100">
     <Head :title="title" />
 
     <!-- Sidebar -->
     <Sidebar :sidebarOpen="sidebarOpen" @close-sidebar="sidebarOpen = false" />
 
-    <!-- Content area -->
+    <!-- Content Area -->
     <div
       class="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden"
     >
-      <!-- Site header -->
+      <!-- Site Header -->
       <Header
         :sidebarOpen="sidebarOpen"
         @toggle-sidebar="sidebarOpen = !sidebarOpen"
       />
 
-      <!-- Page Heading -->
-      <header v-if="$slots.header" class="bg-white shadow">
-        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-          <slot name="header" />
-        </div>
-      </header>
-
       <!-- Page Content -->
       <main>
-        <slot />
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <!-- Page Header -->
+          <div class="sm:flex sm:justify-between sm:items-center mb-8">
+            <!-- Top Left Area -->
+            <div>
+              <h1 class="text-2xl md:text-3xl text-slate-800 font-bold">
+                {{ title }}
+              </h1>
+            </div>
+
+            <!-- Top Right Area -->
+            <div>
+              <h2>Actions</h2>
+            </div>
+          </div>
+          <!-- Page content -->
+          <slot name="content" />
+        </div>
       </main>
     </div>
   </div>
