@@ -1,49 +1,42 @@
 <template>
   <app-layout :title="$t('Users')">
     <template #content>
-      <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <!-- Edit form -->
-        <page-section>
-          <Form @submit.prevent="editHandler" v-model="editForm">
-            <!-- Name -->
-            <Input
-              name="name"
-              :label="$t('Name')"
-              autocomplete="name"
-              required
-            />
-            <!-- Email -->
-            <Input
-              name="email"
-              :label="$t('Email')"
-              autocomplete="email"
-              required
-            />
-            <Submit :label="$t('Save')" />
-          </Form>
-        </page-section>
-        <!-- Change password form -->
-        <PageSection :title="$t('Change password')">
-          <Form
-            @submit.prevent="changePasswordHandler"
-            v-model="changePasswordForm"
-          >
-            <Input
-              name="password"
-              :label="$t('Password')"
-              autocomplete="password"
-              required
-            />
-            <Submit :label="$t('Save')" />
-          </Form>
-        </PageSection>
-        <!-- Delete form -->
-        <PageSection v-if="$page.props.user.id !== entity.id">
-          <Link class="text-red-500" type="button" @click="destroyHandler">{{
-            $t("Delete")
-          }}</Link>
-        </PageSection>
-      </div>
+      <!-- Edit form -->
+      <page-section>
+        <Form @submit.prevent="editHandler" v-model="editForm">
+          <!-- Name -->
+          <Input name="name" :label="$t('Name')" autocomplete="name" required />
+          <!-- Email -->
+          <Input
+            name="email"
+            :label="$t('Email')"
+            autocomplete="email"
+            required
+          />
+          <Submit :label="$t('Save')" />
+        </Form>
+      </page-section>
+      <!-- Change password form -->
+      <PageSection :title="$t('Change password')">
+        <Form
+          @submit.prevent="changePasswordHandler"
+          v-model="changePasswordForm"
+        >
+          <Input
+            name="password"
+            :label="$t('Password')"
+            autocomplete="password"
+            required
+          />
+          <Submit :label="$t('Save')" />
+        </Form>
+      </PageSection>
+      <!-- Delete form -->
+      <PageSection v-if="$page.props.user.id !== entity.id">
+        <Link class="text-red-500" type="button" @click="destroyHandler">{{
+          $t("Delete")
+        }}</Link>
+      </PageSection>
     </template>
   </app-layout>
 </template>
