@@ -33,7 +33,7 @@
 
             <!-- Top Right Area -->
             <div>
-              <h2>Actions</h2>
+              <slot name="top-right" />
             </div>
           </div>
           <!-- Page content -->
