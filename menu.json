@@ -14,9 +14,9 @@
         "children": [
             {
                 "route_active": "users.*",
-                "title": "Users",
-                "icon": "ri-user-line",
-                "route_name": "users.index",
+                "title": "Create",
+                "icon": "ri-add-line",
+                "route_name": "users.create",
                 "permission": "users_view"
             }
         ]

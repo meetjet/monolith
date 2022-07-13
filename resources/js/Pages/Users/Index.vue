@@ -1,5 +1,14 @@
 <template>
   <app-layout :title="$t('Users')">
+    <template #top-right>
+      <inertia-link
+        :href="route('users.create')"
+        class="btn bg-indigo-500 hover:bg-indigo-600 text-white"
+      >
+        <v-icon name="ri-add-line" scale="1.25" />
+        <span class="ml-2">{{ $t("Create") }}</span>
+      </inertia-link>
+    </template>
     <template #content>
       <Table :resource="entities">
         <template #cell(created_at)="{ item: user }">
