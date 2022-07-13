@@ -57,11 +57,12 @@ class UserController extends Controller
             'entities' => $entities,
         ])->table(function (InertiaTable $table) {
             $table
-                ->withGlobalSearch('Поиск...')
-                ->column(key: 'id', label: 'ID', sortable: true, searchable: true)
-                ->column(key: 'name', label: 'Имя', sortable: true, searchable: true)
-                ->column(key: 'email', sortable: true, searchable: true)
-                ->column('actions', 'Действия');
+                ->withGlobalSearch(__('Search') . "...")
+                ->column(key: 'id', label: 'ID', sortable: true)
+                ->column(key: 'name', label: __('Name'), sortable: true, searchable: true)
+                ->column(key: 'email', label: __('Email'), sortable: true, searchable: true)
+                ->column(key: 'created_at', label: __('Created'), sortable: true)
+                ->column('actions', __('Actions'));
         });
     }
 
