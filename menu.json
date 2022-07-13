@@ -13,7 +13,14 @@
         "opened": false,
         "children": [
             {
-                "route_active": "users.*",
+                "route_active": "users.index",
+                "title": "Users",
+                "icon": "ri-user-line",
+                "route_name": "users.index",
+                "permission": "users_view"
+            },
+            {
+                "route_active": "users.create",
                 "title": "Create",
                 "icon": "ri-add-line",
                 "route_name": "users.create",
