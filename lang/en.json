@@ -206,6 +206,10 @@
     "Nothing found": "Nothing found",
     "Prev": "Prev",
     "Next": "Next",
+    "per page": "per page",
     "and": "and",
-    "Edit": "Edit"
+    "Edit": "Edit",
+    "Search": "Search",
+    "Actions": "Actions",
+    "ID": "ID"
 }

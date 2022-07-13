@@ -2,9 +2,14 @@
   <app-layout :title="$t('Users')">
     <template #content>
       <Table :resource="entities">
+        <template #cell(created_at)="{ item: user }">
+          {{ createdTime(user.created_at) }}
+        </template>
         <template #cell(actions)="{ item: user }">
-          <v-icon name="ri-pencil-line" class="mr-2" /><Link
+          <v-icon name="ri-pencil-line" class="mr-2" />
+          <Link
             :href="`/users/${user.id}/edit`"
+            class="text-indigo-600 hover:text-indigo-400 focus:text-indigo-500"
             >{{ $t("Edit") }}</Link
           >
         </template>

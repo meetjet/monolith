@@ -12,13 +12,13 @@ import { icons } from "./plugins/oh-vue-icons";
 import { setTranslations } from "@protonemedia/inertiajs-tables-laravel-query-builder";
 
 setTranslations({
-  next: "След.",
-  no_results_found: "No results found",
-  of: "of",
-  per_page: "на стр.",
-  previous: "Пред.",
-  results: "результатов",
-  to: "to",
+  next: __("Next"),
+  no_results_found: __("Nothing found"),
+  of: __("of"),
+  per_page: __("per page"),
+  previous: __("Prev"),
+  results: __("results"),
+  to: __("to"),
 });
 
 const appName =
