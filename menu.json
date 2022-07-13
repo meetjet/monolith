@@ -1,0 +1,24 @@
+[
+    {
+        "title": "Dashboard",
+        "icon": "ri-home-line",
+        "route_name": "dashboard",
+        "permission": "users_view",
+        "opened": false
+    },
+    {
+        "title": "Users",
+        "icon": "ri-user-line",
+        "permission": "users_view",
+        "opened": false,
+        "children": [
+            {
+                "route_active": "users.*",
+                "title": "Users",
+                "icon": "ri-user-line",
+                "route_name": "users.index",
+                "permission": "users_view"
+            }
+        ]
+    }
+]

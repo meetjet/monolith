@@ -77,61 +77,105 @@
         </Link>
       </div>
 
-      <!-- Links -->
-      <div class="space-y-8">
-        <!-- Pages group -->
-        <div>
-          <h3 class="text-xs uppercase text-slate-500 font-semibold pl-3">
-            <span
-              class="hidden lg:block lg:sidebar-expanded:hidden 2xl:hidden text-center w-6"
-              aria-hidden="true"
-              >•••</span
-            >
-            <span class="lg:hidden lg:sidebar-expanded:block 2xl:block"
-              >Pages</span
-            >
-          </h3>
-          <ul class="mt-3">
-            <Link href="/users">Users</Link>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Expand / collapse button -->
-      <div class="pt-3 hidden lg:inline-flex 2xl:hidden justify-end mt-auto">
-        <div class="px-3 py-2">
-          <button @click.prevent="sidebarExpanded = !sidebarExpanded">
-            <span class="sr-only">Expand / collapse sidebar</span>
-            <svg
-              class="w-6 h-6 fill-current sidebar-expanded:rotate-180"
-              viewBox="0 0 24 24"
-            >
-              <path
-                class="text-slate-400"
-                d="M19.586 11l-5-5L16 4.586 23.414 12 16 19.414 14.586 18l5-5H7v-2z"
-              />
-              <path class="text-slate-600" d="M3 23H1V1h2z" />
-            </svg>
-          </button>
-        </div>
-      </div>
+      <ul class="mt-3">
+        <template v-for="(item, key) in menuItems" :key="key">
+          <SidebarLinkGroup :activeCondition="activeCondition(item)">
+            <template v-if="item.children && item.children.length">
+              <a
+                @click.prevent="item.opened = !item.opened"
+                href="#"
+                class="block text-slate-200 hover:text-white truncate transition duration-150"
+              >
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center">
+                    <v-icon width="25" height="25" :name="item.icon" />
+                    <span
+                      class="text-sm font-medium ml-3 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200"
+                      >{{ $t(item.title) }}</span
+                    >
+                  </div>
+                  <!--Icon-->
+                  <div class="flex shrink-0 ml-2">
+                    <svg
+                      :class="{
+                        'w-3 h-3 shrink-0 ml-1 fill-current text-slate-400': true,
+                        'transform rotate-180': item.opened,
+                      }"
+                      viewBox="0 0 12 12"
+                    >
+                      <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z" />
+                    </svg>
+                  </div>
+                </div>
+              </a>
+              <div
+                class="lg:sidebar-expanded:block 2xl:block"
+                v-if="item.opened"
+              >
+                <ul class="pl-9 mt-1">
+                  <template
+                    v-for="(path, path_key) in item.children"
+                    :key="path_key"
+                  >
+                    <li class="mb-1 last:mb-0">
+                      <Link
+                        :class="{
+                          '!text-indigo-500': activeCondition(path),
+                          'block text-slate-400 hover:text-slate-200 transition duration-150 truncate': true,
+                        }"
+                        :href="route(path.route_name)"
+                        :active="activeCondition(path)"
+                      >
+                        <span
+                          class="text-sm font-medium lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200"
+                          >{{ $t(path.title) }}</span
+                        >
+                      </Link>
+                    </li>
+                  </template>
+                </ul>
+              </div>
+            </template>
+            <template v-else>
+              <Link
+                :href="route(item.route_name)"
+                class="block text-slate-200 hover:text-white truncate transition duration-150"
+              >
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center">
+                    <v-icon width="25" height="25" :name="item.icon" />
+                    <span
+                      class="text-sm font-medium ml-3 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200"
+                      >{{ $t(item.title) }}</span
+                    >
+                  </div>
+                </div>
+              </Link>
+            </template>
+          </SidebarLinkGroup>
+        </template>
+      </ul>
     </div>
   </div>
 </template>
 
 <script>
-import { ref, onMounted, onUnmounted, watch } from "vue";
+import { ref, onMounted, onUnmounted, computed, watch } from "vue";
+import { usePage } from "@inertiajs/inertia-vue3";
 import { Link } from "@inertiajs/inertia-vue3";
 import SidebarLinkGroup from "./SidebarLinkGroup.vue";
+import menu from "../../../menu.json";
 
 export default {
   name: "Sidebar",
-  props: ["sidebarOpen"],
+  props: ["user", "sidebarOpen"],
   components: {
     Link,
     SidebarLinkGroup,
   },
   setup(props, { emit }) {
+    const $route = window.route;
+    const user = computed(() => usePage().props.value.user);
     const trigger = ref(null);
     const sidebar = ref(null);
 
@@ -158,6 +202,41 @@ export default {
       emit("close-sidebar");
     };
 
+    const activeCondition = (module) => {
+      let result = false;
+      if (module.route_active) {
+        result = $route().current(module.route_active);
+        if (module.excludes) {
+          module.excludes.forEach((item) => {
+            if ($route().current(item)) {
+              result = false;
+            }
+          });
+        }
+      }
+      if (module.route_name && !result) {
+        result = $route().current(module.route_name);
+      }
+      if (module.children) {
+        module.children.forEach((item) => {
+          if (activeCondition(item)) {
+            result = true;
+            return;
+          }
+        });
+      }
+      return result;
+    };
+
+    for (const [key, item] of Object.entries(menu)) {
+      item.opened = activeCondition(item);
+      if (item.opened) {
+        break;
+      }
+    }
+
+    const menuItems = ref(menu);
+
     onMounted(() => {
       document.addEventListener("click", clickHandler);
       document.addEventListener("keydown", keyHandler);
@@ -178,9 +257,12 @@ export default {
     });
 
     return {
+      user,
       trigger,
       sidebar,
       sidebarExpanded,
+      activeCondition,
+      menuItems,
     };
   },
 };
