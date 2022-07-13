@@ -25,6 +25,7 @@ import { Link } from "@inertiajs/inertia-vue3";
 import { Table } from "@protonemedia/inertiajs-tables-laravel-query-builder";
 
 export default {
+  inject: ["$dayjs"],
   components: {
     AppLayout,
     PageSection,
@@ -36,13 +37,7 @@ export default {
   },
   methods: {
     createdTime(time) {
-      return new Date(time).toLocaleTimeString("ru-Ru", {
-        day: "numeric",
-        month: "long",
-        year: "numeric",
-        hour: "numeric",
-        minute: "numeric",
-      });
+      return this.$dayjs(time).format("DD-MM-YYYY, HH:mm");
     },
   },
 };
