@@ -91,10 +91,9 @@
               >Pages</span
             >
           </h3>
-          <div
-            v-if="$page.props.menus.main"
-            v-html="$page.props.menus.main"
-          ></div>
+          <ul class="mt-3">
+            <Link href="/users">Users</Link>
+          </ul>
         </div>
       </div>
 
