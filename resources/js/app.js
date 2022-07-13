@@ -10,6 +10,7 @@ import { __, setLocale } from "matice";
 import { hasRole, hasPermission } from "./plugins/role_permission_plugin";
 import { icons } from "./plugins/oh-vue-icons";
 import { setTranslations } from "@protonemedia/inertiajs-tables-laravel-query-builder";
+import dayjs from "dayjs";
 
 setTranslations({
   next: __("Next"),
@@ -41,6 +42,7 @@ createInertiaApp({
       .mixin({ methods: { $hasRole: hasRole } })
       .mixin({ methods: { $hasPermission: hasPermission } })
       .component("v-icon", icons)
+      .provide("$dayjs", dayjs)
       .mount(el);
   },
 });
