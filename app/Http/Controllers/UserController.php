@@ -58,7 +58,7 @@ class UserController extends Controller
         ])->table(function (InertiaTable $table) {
             $table
                 ->withGlobalSearch(__('Search') . "...")
-                ->column(key: 'id', label: 'ID', sortable: true)
+                ->column(key: 'id', label: __('ID'), sortable: true)
                 ->column(key: 'name', label: __('Name'), sortable: true, searchable: true)
                 ->column(key: 'email', label: __('Email'), sortable: true, searchable: true)
                 ->column(key: 'created_at', label: __('Created'), sortable: true)
